@@ -17,7 +17,7 @@ public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.getWriter().write("hello doGet");
+        resp.getWriter().write("hello doGet：now is " + System.currentTimeMillis());
     }
 
     @Override
