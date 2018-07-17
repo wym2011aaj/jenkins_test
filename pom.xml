@@ -64,17 +64,25 @@
 						</compilerArgs>
 					</configuration>
 				</plugin>
-			<plugin>
-      				<groupId>org.apache.tomcat.maven</groupId>
-      				<artifactId>tomcat7-maven-plugin</artifactId>
-			        <configuration>
-			        <url>http://localhost:8081/manager/text</url>
-				<path>/</path>
-			        <server>tomcat</server>
-			        <username>tomcat</username>
-			        <password>123456</password>
-			        </configuration>
-		      </plugin>
+			  <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.9</version>
+				<configuration>
+					<container>
+						<containerId>tomcat8x</containerId>
+						<type>remote</type>
+					</container>
+					<configuration>
+						<type>runtime</type>
+						<properties>
+							<cargo.remote.uri>http://localhost:8081/manager/text</cargo.remote.uri>
+							<cargo.remote.username>tomcat</cargo.remote.username>
+							<cargo.remote.password>123456</cargo.remote.password>
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
