@@ -37,15 +37,6 @@
 						</compilerArgs>
 					</configuration>
 				</plugin>
-			<!-- web Ŀ¼ -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-                <configuration>
-                    <packagingExcludes>%regex[images/(?!${area}).*]</packagingExcludes>
-                </configuration>
-            </plugin>
 		</plugins>
 	</build>
 </project>
