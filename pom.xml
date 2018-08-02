@@ -19,34 +19,6 @@
 		</dependency>
 	</dependencies>
 
-	<!--配置将本地构建提交到nexus私服-->
-	<distributionManagement>
-		<!-- 配置快照版本发布的仓库-->
-		<!--<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<name>Nexus Snapshots Repository</name>
-			<url>http://192.168.1.204:8081/nexus/content/repositories/safecampus_snapshots/</url>
-		</snapshotRepository>-->
-		<!-- 配置release版本发布的仓库-->
-		<!--<repository>
-			<id>nexus-releases</id>
-			<name>Nexus Releases Repository</name>
-			<url>http://192.168.1.204:8081/nexus/content/repositories/safecampus_releases/</url>
-		</repository>-->
-		<!-- 配置快照版本发布的仓库-->
-		<snapshotRepository>
-			<id>artifactory-snapshots</id>
-			<name>Nexus Snapshots Repository</name>
-			<url>http://192.168.1.204:9081/artifactory/maven_test/</url>
-		</snapshotRepository>
-		<!-- 配置release版本发布的仓库-->
-		<repository>
-			<id>artifactory-releases</id>
-			<name>Nexus Releases Repository</name>
-			<url>http://192.168.1.204:9081/artifactory/maven_test/</url>
-		</repository>
-	</distributionManagement>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -65,40 +37,13 @@
 						</compilerArgs>
 					</configuration>
 				</plugin>
-				<plugin>
-					<groupId>org.codehaus.cargo</groupId>
-					<artifactId>cargo-maven2-plugin</artifactId>
-					<version>1.4.15</version>
-					<configuration>
-						<container>
-							<containerId>tomcat8x</containerId>
-							<type>remote</type>
-						</container>
-						<configuration>
-							<type>runtime</type>
-							<properties>
-								<cargo.tomcat.manager.url>http://52.83.118.52:8081/manager</cargo.tomcat.manager.url>
-								<cargo.remote.username>admin</cargo.remote.username>
-								<cargo.remote.password>admin</cargo.remote.password>
-								<cargo.servlet.port>8081</cargo.servlet.port>
-								<cargo.hostname>52.83.118.52</cargo.hostname>
-								<cargo.tomcat.ajp.port>8009</cargo.tomcat.ajp.port>
-							</properties>
-						</configuration>
-					</configuration>
-				</plugin>
 			<!-- web 目录 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
-				   <warSourceExcludes>WEB-INF/web.xml</warSourceExcludes>
-				   <failOnMissingWebXml>false</failOnMissingWebXml>
-　　　　　　　　　　　　<!-- 下面两个配置没有生效，这里贴出是表示提醒 
-                    <packagingExcludes>src/webapp/WEB-INF/web.xml</packagingExcludes>
-                    <warSourceExcludes>src/webapp/WEB-INF/web.xml</warSourceExcludes>
-                    -->
+                    <packagingExcludes>%regex[images/(?!${area}).*]</packagingExcludes>
                 </configuration>
             </plugin>
 		</plugins>
